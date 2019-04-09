@@ -12,14 +12,9 @@ WORKDIR qt5
 RUN git checkout v5.12.1
 RUN perl init-repository --module-subset=default,-qtwebengine
 
-# unify with line above:
-RUN apt --yes install clang
-
 # Using several sanitizers concurrently is not supported with the configure script yet, so do it manually:
-RUN sed -i 's/QMAKE_LFLAGS += -ccc-gcc-name g++/QMAKE_LFLAGS += -ccc-gcc-name g++ -fsanitize=address -fsanitize=undefined\nQMAKE_CFLAGS += -fsanitize=address -fsanitize=undefined\nQMAKE_CXXFLAGS += -fsanitize=address -fsanitize=undefined\n/' qtbase/mkspecs/linux-clang/qmake.conf
-
-RUN cat qtbase/mkspecs/linux-clang/qmake.conf
+RUN sed -i 's/load(qt_config)/QMAKE_LFLAGS += -fsanitize=address,undefined\nQMAKE_CFLAGS += -fsanitize=address,undefined\nQMAKE_CXXFLAGS += -fsanitize=address,undefined\nload(qt_config)/' qtbase/mkspecs/linux-g++/qmake.conf
 
 ENV MAKEFLAGS=-j4
-RUN ./configure -platform linux-clang -developer-build -opensource -confirm-license -verbose -nomake examples -nomake tests
+RUN ./configure -developer-build -opensource -confirm-license -verbose -nomake examples -nomake tests
 RUN make

@@ -12,7 +12,7 @@ WORKDIR qt5
 RUN git checkout v5.12.1
 RUN perl init-repository --module-subset=default,-qtwebengine
 
+RUN mkdir /build
+WORKDIR /build
 ENV MAKEFLAGS=-j8
-RUN ./configure -debug -opensource -sanitize address -sanitize undefined -confirm-license -nomake examples -nomake tests
-RUN make
-RUN make install
+ENTRYPOINT /qt5/configure -debug -opensource -sanitize address -sanitize undefined -confirm-license -nomake examples -nomake tests && make && make install

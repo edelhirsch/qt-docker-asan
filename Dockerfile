@@ -15,4 +15,6 @@ RUN perl init-repository --module-subset=default,-qtwebengine
 RUN mkdir /build
 WORKDIR /build
 ENV MAKEFLAGS=-j8
-ENTRYPOINT /qt5/configure -debug -opensource -sanitize address -sanitize undefined -confirm-license -nomake examples -nomake tests && make && make install
+
+# for some reason the xcb plugin won't compile, so let's disable it:
+ENTRYPOINT /qt5/configure -debug -opensource -sanitize address -sanitize undefined -confirm-license -nomake examples -nomake tests -no-xcb-xlib && make && make install

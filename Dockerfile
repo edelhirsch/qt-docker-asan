@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM ubuntu:18.04
 MAINTAINER Peter Hartmann <github@peterh.33mail.com>
 
 RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list

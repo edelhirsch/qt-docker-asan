@@ -9,3 +9,4 @@ CID=`cat $INTERMEDIATE_NAME.cid`
 docker commit -c 'ENTRYPOINT ["/bin/bash"]' $CID $NAME
 rm $INTERMEDIATE_NAME.cid
 # to check: docker run -it qt-asan-ubsan
+### tag it and upload to Docker Hub

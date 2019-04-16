@@ -17,4 +17,4 @@ WORKDIR /build
 ENV MAKEFLAGS=-j4
 
 # for some reason the xcb plugin won't compile, so let's disable it:
-ENTRYPOINT /qt5/configure -debug -opensource -sanitize address -sanitize undefined -confirm-license -nomake examples -nomake tests -no-xcb-xlib && make && make install && rm -r /build
+ENTRYPOINT /qt5/configure -debug -opensource -sanitize address -sanitize undefined -confirm-license -nomake examples -nomake tests -no-xcb-xlib && make && make install ; cd / && rm -r /build /qt5

@@ -9,4 +9,7 @@ CID=`cat $INTERMEDIATE_NAME.cid`
 docker commit -c 'ENTRYPOINT ["/bin/bash"]' $CID $NAME
 rm $INTERMEDIATE_NAME.cid
 # to check: docker run -it qt-asan-ubsan
-### tag it and upload to Docker Hub
+# to push to Docker Hub:
+# `docker images` -> remember image ID
+# docker tag d738e8f32e9c edelhirsch/qt-asan-ubsan:v5.12.3 # d738... is the image ID
+# docker push edelhirsch/qt-asan-ubsan

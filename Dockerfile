@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-MAINTAINER Peter Hartmann <github@peterh.33mail.com>
+MAINTAINER Peter Hartmann <peter@edelhirsch.io>
 
 RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
 RUN apt update

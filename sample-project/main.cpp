@@ -1,11 +1,10 @@
 #include <QtCore>
-#include <QtQuick>
 
-int main(int argc, char **argv)
+int main(int /*argc*/, char **/*argv*/)
 {
-    QGuiApplication guiApp(argc, argv);
-    auto engine = new QQmlEngine;
-    engine = nullptr;
-    qDebug() << engine->baseUrl();
+    auto parent = new QObject;
+    auto child = new QObject(parent);
+    delete parent;
+    delete child;
 }
 

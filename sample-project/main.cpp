@@ -1,8 +1,11 @@
 #include <QtCore>
+#include <QtQuick>
 
-int main(int /*argc*/, char **/*argv*/)
+int main(int argc, char **argv)
 {
-    QStringList list = {"one", "two"};
-    qDebug() << list[2];
+    QGuiApplication guiApp(argc, argv);
+    auto engine = new QQmlEngine;
+    engine = nullptr;
+    qDebug() << engine->baseUrl();
 }
 

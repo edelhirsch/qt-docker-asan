@@ -19,8 +19,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 QT += quick
 
-QMAKE_CXXFLAGS += -fsanitize=address
-QMAKE_LFLAGS += -fsanitize=address -static-libasan
+#QMAKE_CXXFLAGS += -fsanitize=address
+#QMAKE_LFLAGS += -fsanitize=address -static-libasan
 
 # Input
 SOURCES += main.cpp

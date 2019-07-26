@@ -9,7 +9,7 @@ RUN apt --yes install libxcb-xinerama0-dev '^libxcb.*-dev' libx11-xcb-dev libglu
 RUN git clone https://code.qt.io/qt/qt5.git
 
 WORKDIR qt5
-RUN git checkout v5.12.3
+RUN git checkout v5.12.4
 RUN perl init-repository --module-subset=default,-qtwebengine,-qt3d
 
 RUN mkdir /build
@@ -17,4 +17,4 @@ WORKDIR /build
 ENV MAKEFLAGS=-j4
 
 # for some reason the xcb plugin and qt3d won't compile, so we are building without them
-ENTRYPOINT /qt5/configure -debug -opensource -sanitize address -sanitize undefined -confirm-license -nomake examples -nomake tests -no-xcb-xlib && make && make install && cd / && rm -r /build /qt5
+ENTRYPOINT /qt5/configure -debug -opensource -sanitize address -sanitize undefined -confirm-license -nomake examples -nomake tests QMAKE_CFLAGS+=-fno-sanitize=vptr QMAKE_CXXFLAGS+=-fno-sanitize=vptr && make && make install && cd / && rm -r /build /qt5

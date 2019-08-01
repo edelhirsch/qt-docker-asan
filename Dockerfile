@@ -17,4 +17,4 @@ WORKDIR /build
 ENV MAKEFLAGS=-j4
 
 # for some reason the xcb plugin and qt3d won't compile, so we are building without them
-ENTRYPOINT /qt5/configure -debug -opensource -sanitize address -sanitize undefined -confirm-license -nomake examples -nomake tests QMAKE_CFLAGS+=-fno-sanitize=vptr QMAKE_CXXFLAGS+=-fno-sanitize=vptr && make && make install && cd / && rm -r /build /qt5
+ENTRYPOINT /qt5/configure -debug -opensource -sanitize address -sanitize undefined -confirm-license -nomake examples -nomake tests && make && make install && cd / && rm -r /build /qt5
